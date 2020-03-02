@@ -1,7 +1,7 @@
 {
     "name": "bomoko/lagoon-logs",
     "description": "Zero config logging module for Laravel and Lagoon",
-    "type": "project",
+    "type": "package",
     "require": {
         "monolog/monolog": "^2.0"
     },
