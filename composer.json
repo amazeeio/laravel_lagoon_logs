@@ -11,5 +11,10 @@
             "name": "Blaize Kaye",
             "email": "blaize.kaye@amazee.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            'bomoko\LagoonLogs\\': "src/"
+        }
+    }
 }

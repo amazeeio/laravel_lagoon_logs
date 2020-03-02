@@ -39,7 +39,7 @@ class LagoonLoggerFactory {
       self::DEFAULT_HOSTPORT);
     $udpHandler = new SocketHandler($connectionString);
     $udpHandler->setFormatter(new LogstashFormatter(self::getHostProcessIndex(),
-      NULL, NULL, self::DEFAULT_EXTRA_KEY_FOR_FORMATTER, 1));
+      NULL, 'extra', self::DEFAULT_EXTRA_KEY_FOR_FORMATTER, 1));
     $logger->pushHandler($udpHandler);
     return $logger;
   }
