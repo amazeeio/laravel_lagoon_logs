@@ -1,5 +1,5 @@
 {
-    "name": "bomoko/LagoonLogs",
+    "name": "bomoko/lagoon-logs",
     "description": "Zero config logging module for Laravel and Lagoon",
     "type": "project",
     "require": {
