@@ -1,5 +1,5 @@
 {
-    "name": "bomoko/lagoon-logs",
+    "name": "amazeeio/lagoon-logs",
     "description": "Zero config logging module for Laravel and Lagoon",
     "type": "package",
     "require": {
@@ -14,7 +14,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "bomoko\\LagoonLogs\\": "src/"
+            "amazeeio\\LagoonLogs\\": "src/"
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace bomoko\LagoonLogs;
+namespace amazeeio\LagoonLogs;
 
 use Monolog\Formatter\LogstashFormatter;
 use Monolog\Handler\SocketHandler;
@@ -9,7 +9,7 @@ use Monolog\Logger;
 /**
  * Class LagoonLoggerFactory
  *
- * @package bomoko\LagoonLogs
+ * @package amazeeio\LagoonLogs
  */
 class LagoonLoggerFactory {
 
