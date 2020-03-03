@@ -25,6 +25,8 @@ class LagoonLoggerFactory {
 
   const LAGOON_LOGS_DEFAULT_LAGOON_PROJECT = 'project_unset';
 
+  const LAGOON_LOGS_DEFAULT_CHUNK_SIZE_BYTES = 15000;
+
   /**
    * Create a custom Monolog instance.
    *
@@ -38,6 +40,7 @@ class LagoonLoggerFactory {
     $connectionString = sprintf("udp://%s:%s", self::DEFAULT_HOSTNAME,
       self::DEFAULT_HOSTPORT);
     $udpHandler = new SocketHandler($connectionString);
+    $udpHandler->setChunkSize(self::LAGOON_LOGS_DEFAULT_CHUNK_SIZE_BYTES);
     $udpHandler->setFormatter(new LogstashFormatter(self::getHostProcessIndex(),
       NULL, 'extra', self::DEFAULT_EXTRA_KEY_FOR_FORMATTER, 1));
     $logger->pushHandler($udpHandler);
