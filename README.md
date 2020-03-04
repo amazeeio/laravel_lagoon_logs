@@ -5,6 +5,8 @@ Monolog channel and formatter for Laravel logging into Lagoon.
 
 Installing this package makes the channel "LagoonLogs" available in your logging config.
 
+You can install the package by simply running `composer require amazeeio/lagoon-logs` - the package should be installed and autodiscovered by Laravel.
+
 It's important to note that this is essentially a wrapper around a Monolog Logger with a specifically set UDP SocketHandler and LogstashFormatter - therefore, it really only makes sense to use this _when_ deployed to a Lagoon instance.
 
 In a vanilla Laravel 6 installation, this is most easily done by setting the environment variable `LOG_CHANNEL` to `LagoonLogs`.
