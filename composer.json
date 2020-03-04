@@ -16,5 +16,12 @@
         "psr-4": {
             "amazeeio\\LagoonLogs\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "amazeeio\\LagoonLogs\\LagoonLogsServiceProvider"
+            ]
+        }
     }
 }
