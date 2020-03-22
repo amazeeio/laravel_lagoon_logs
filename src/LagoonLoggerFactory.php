@@ -2,8 +2,13 @@
 
 namespace amazeeio\LagoonLogs;
 
+use Monolog\Formatter\LineFormatter;
 use Monolog\Formatter\LogstashFormatter;
+use Monolog\Handler\ErrorLogHandler;
+use Monolog\Handler\FallbackGroupHandler;
 use Monolog\Handler\SocketHandler;
+use Monolog\Handler\StreamHandler;
+use Monolog\Handler\SyslogHandler;
 use Monolog\Logger;
 
 /**
@@ -27,6 +32,8 @@ class LagoonLoggerFactory {
 
   const LAGOON_LOGS_DEFAULT_CHUNK_SIZE_BYTES = 15000;
 
+  const LAGOON_LOGS_FALLBACK_LINE_FORMAT = "LAGOON LOGS FALLBACK: [%datetime%] %channel%.%level_name%: %message% %context% %extra%\n";
+
   /**
    * Create a custom Monolog instance.
    *
@@ -43,7 +50,16 @@ class LagoonLoggerFactory {
     $udpHandler->setChunkSize(self::LAGOON_LOGS_DEFAULT_CHUNK_SIZE_BYTES);
     $udpHandler->setFormatter(new LogstashFormatter(self::getHostProcessIndex(),
       NULL, 'extra', self::DEFAULT_EXTRA_KEY_FOR_FORMATTER, 1));
-    $logger->pushHandler($udpHandler);
+
+    // We want to wrap the group in a failure handler so that if
+    // the logstash instance isn't available, it pushes to std
+    // which will be available via the docker logs
+    $fallbackHandler = new StreamHandler('php://stdout');
+
+    $failureGroupHandler = new FallbackGroupHandler([$udpHandler, $fallbackHandler]);
+
+    $logger->pushHandler($failureGroupHandler);
+
     return $logger;
   }
 
