@@ -2,13 +2,10 @@
 
 namespace amazeeio\LagoonLogs;
 
-use Monolog\Formatter\LineFormatter;
 use Monolog\Formatter\LogstashFormatter;
-use Monolog\Handler\ErrorLogHandler;
 use Monolog\Handler\FallbackGroupHandler;
 use Monolog\Handler\SocketHandler;
 use Monolog\Handler\StreamHandler;
-use Monolog\Handler\SyslogHandler;
 use Monolog\Logger;
 
 /**
