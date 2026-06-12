@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace amazeeio\LagoonLogs;
 
 use Illuminate\Support\ServiceProvider;
@@ -8,14 +10,12 @@ class LagoonLogsServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->app->make('config')->set('logging.channels.LagoonLogs', [
           "driver" => "custom",
-          "via" => "amazeeio\LagoonLogs\LagoonLoggerFactory",
+          "via" => LagoonLoggerFactory::class,
         ]);
     }
 }
