@@ -14,8 +14,8 @@ class LagoonLogsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->make('config')->set('logging.channels.LagoonLogs', [
-            'driver' => 'custom',
-            'via' => LagoonLoggerFactory::class,
+          "driver" => "custom",
+          "via" => LagoonLoggerFactory::class,
         ]);
     }
 }

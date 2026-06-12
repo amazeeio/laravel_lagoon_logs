@@ -17,22 +17,23 @@ use Monolog\Logger;
  */
 class LagoonLoggerFactory
 {
-    public const LAGOON_LOGS_MONOLOG_CHANNEL_NAME = 'LagoonLogs';
+    public const string LAGOON_LOGS_MONOLOG_CHANNEL_NAME = 'LagoonLogs';
 
-    public const DEFAULT_HOSTNAME = "application-logs.lagoon.svc";
+    private const string DEFAULT_HOSTNAME = "application-logs.lagoon.svc";
 
-    public const DEFAULT_HOSTPORT = "5140";
+    private const string DEFAULT_HOSTPORT = "5140";
 
-    public const DEFAULT_EXTRA_KEY_FOR_FORMATTER = "ctxt_";
+    private const string DEFAULT_EXTRA_KEY_FOR_FORMATTER = "ctxt_";
 
-    public const LAGOON_LOGS_DEFAULT_SAFE_BRANCH = 'safe_branch_unset';
+    private const string LAGOON_LOGS_DEFAULT_SAFE_BRANCH = 'safe_branch_unset';
 
-    public const LAGOON_LOGS_DEFAULT_LAGOON_PROJECT = 'project_unset';
+    private const string LAGOON_LOGS_DEFAULT_LAGOON_PROJECT = 'project_unset';
 
-    public const LAGOON_LOGS_DEFAULT_CHUNK_SIZE_BYTES = 15000;
+    private const int LAGOON_LOGS_DEFAULT_CHUNK_SIZE_BYTES = 15000;
 
-    public const LAGOON_LOGS_FALLBACK_LINE_FORMAT = "LAGOON LOGS FALLBACK: " .
-        "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n";
+    private const string LAGOON_LOGS_FALLBACK_LINE_FORMAT =
+        "LAGOON LOGS FALLBACK: [%datetime%] %channel%.%level_name%: " .
+        "%message% %context% %extra%\n";
 
     /**
      * Create a custom Monolog instance.
@@ -54,9 +55,9 @@ class LagoonLoggerFactory
             1
         ));
 
-        // We want to wrap the group in a failure handler so that if
-        // the logstash instance isn't available, it pushes to std
-        // which will be available via the docker logs
+    // We want to wrap the group in a failure handler so that if
+    // the logstash instance isn't available, it pushes to std
+    // which will be available via the docker logs
         $fallbackHandler = new StreamHandler('php://stdout');
 
         $failureGroupHandler = new FallbackGroupHandler([$udpHandler, $fallbackHandler]);
